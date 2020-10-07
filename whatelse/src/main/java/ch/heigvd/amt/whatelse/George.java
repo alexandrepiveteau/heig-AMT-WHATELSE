@@ -18,8 +18,16 @@ public class George {
    You must write all the code in THIS class to make the tests get green.
    */
 
-  public ICoffee pleasePrepareMeANice(String coffeeName) {
-    return new Yverdoto();
-  }
+    public ICoffee pleasePrepareMeANice(String coffeeName) {
+        try {
+            String name = "ch.heigvd.amt.whatelse.impl." + coffeeName;
+            return (ICoffee) Class.forName(name)
+                    .getConstructor()
+                    .newInstance();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        }
+    }
 
 }
